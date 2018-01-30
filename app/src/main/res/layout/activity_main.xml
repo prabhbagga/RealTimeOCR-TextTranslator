@@ -23,4 +23,23 @@
         android:id="@+id/tvResult"
         android:layout_alignParentBottom="true"
         />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="snap"
+        android:id="@+id/snapbtn"
+        />
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/translatebtn"
+            android:text="TRANSLATE"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
 </LinearLayout>

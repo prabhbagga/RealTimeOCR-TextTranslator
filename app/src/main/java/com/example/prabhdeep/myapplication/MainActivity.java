@@ -1,6 +1,7 @@
 package com.example.prabhdeep.myapplication;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     SurfaceView cameraView;
     TextView textView;
     CameraSource cameraSource;
+    Button snap;
+    Button translate;
     final int RequestCameraPermissionID = 1001;
 
 
@@ -53,7 +58,22 @@ public class MainActivity extends AppCompatActivity {
 
         cameraView = (SurfaceView) findViewById(R.id.cameraView);
         textView = (TextView) findViewById(R.id.tvResult);
-
+        snap = findViewById(R.id.snapbtn);
+        translate = findViewById(R.id.translatebtn);
+        translate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(MainActivity.this,Translater.class);
+                i.putExtra("result",textView.getText());
+                startActivity(i);
+            }
+        });
+        snap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraSource.stop();
+            }
+        });
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
             Log.w("MainActivity", "Detector dependencies are not yet available");
